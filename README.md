@@ -23,7 +23,11 @@ const player = new ListPlayer({
 })
 ```
 
-ListPlayer will create a hidden audio element at the bottom of the `<body>` from which it controls the tracks. Now you can control the playlist in any number of ways. For example:
+ListPlayer will create a hidden audio element at the bottom of the `<body>` from which it controls the tracks.
+
+#### Track Control
+
+You can control the playlist in any number of ways. For example:
 
 ```js
 player.index // starts at 0, set it as you wish
@@ -34,7 +38,7 @@ player.next() // moves to the next song in the playlist
 player.prev() // moves to the previous song in the playlist
 ```
 
-If you have `loopTracks` set to `false` and try to move to the previous track from the first track in the list or the next track from the last, you will get an error. Otherwise it will loop back through the other side.
+If you have `loopTracks` set to `false` and try to move to the previous track from the first track in the list or the next track from the last, you will get an error. Otherwise it will loop back through the other side. When one track is finished playing, it will move to the next track in the list.
 
 You can also control the volume and seeking position:
 
@@ -45,6 +49,8 @@ player.seek() // returns the position of the playhead, from 0 to 100
 player.seek(50) // moves the playhead to 50% of the way through the track
 ```
 
+#### Metadata
+
 You can get information about the currently playing track easily through `player.currentTrack`. This information is read from [ID3 tags](https://www.wikiwand.com/en/ID3) on your audio files. It returns an object containing the following metadata:
 
 ```js
@@ -53,7 +59,8 @@ You can get information about the currently playing track easily through `player
   title: 'xxx',
   album: 'xxx',
   artist: 'xxx',
-  year: 'xxx'
+  year: 'xxx',
+  duration: 'xxx'
 }
 ```
 
@@ -78,6 +85,28 @@ const player = new ListPlayer({
   ]
 })
 ```
+
+#### Events
+
+The player instance also emits events that you can listen to in order to figure out what's going on. For example:
+
+```js
+player.on('play', console.log)
+```
+
+Here's a listing of all the events:
+
+- `play` - a track starts playing
+- `pause` - the player is paused
+- `next` - player is moving to the next track
+- `prev` - player is moving to the previous track
+- `seek` - player is seeking to a different location within a track
+- `volumeChange` - player's volume has been changed
+- `error` - there was some type of error
+
+Each event will provide a response object as the first parameter with additional information, if necessary.
+
+#### Advanced
 
 Finally, you can access the raw web audio nodes if you need to do more advanced things:
 
