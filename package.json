@@ -1,0 +1,43 @@
+{
+  "name": "player",
+  "description": "js api for controlling audio playlists",
+  "version": "0.0.0",
+  "author": "Jeff Escalante",
+  "ava": {
+    "verbose": "true"
+  },
+  "bugs": {
+    "url": "https://github.com/jescalan/listplayer/issues"
+  },
+  "devDependencies": {
+    "ava": "^0.15.1",
+    "babel-preset-es2015": "^6.9.0",
+    "coveralls": "2.x",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.3",
+    "nyc": "^6.0.0",
+    "standard": "^7.0.0"
+  },
+  "homepage": "https://github.com/jescalan/listplayer#readme",
+  "keywords": [
+    "audio",
+    "playlist",
+    "webaudio"
+  ],
+  "license": "MIT",
+  "main": "dist/listplayer.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jescalan/listplayer.git"
+  },
+  "scripts": {
+    "coverage": "nyc ava",
+    "coveralls": "nyc --reporter=lcov ava && cat ./coverage/lcov.info | coveralls",
+    "lint": "standard",
+    "test": "ava",
+    "prepublish": "gulp",
+    "build": "gulp"
+  }
+}
