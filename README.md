@@ -32,7 +32,7 @@ You can control the playlist in any number of ways. For example:
 ```js
 player.index // starts at 0, set it as you wish
 player.play() // plays the currentTrack, by default first song in the list
-player.playing // boolean, is it actively playing a song?
+player.playing() // boolean, is it actively playing a song?
 player.pause() // pauses the song, resumed at the same place with `play()`
 player.next() // moves to the next song in the playlist
 player.prev() // moves to the previous song in the playlist

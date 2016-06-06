@@ -17,6 +17,8 @@
     "gulp-babel": "^6.1.2",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.5.3",
+    "gulp-wrap-umd": "^0.2.1",
+    "jsdom": "^9.2.1",
     "nyc": "^6.0.0",
     "standard": "^7.0.0"
   },
@@ -33,10 +35,10 @@
     "url": "git+https://github.com/jescalan/listplayer.git"
   },
   "scripts": {
-    "coverage": "nyc ava",
+    "coverage": "gulp && nyc ava",
     "coveralls": "nyc --reporter=lcov ava && cat ./coverage/lcov.info | coveralls",
     "lint": "standard",
-    "test": "ava",
+    "test": "gulp && ava",
     "prepublish": "gulp",
     "build": "gulp"
   }
