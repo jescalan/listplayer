@@ -56,6 +56,11 @@ class ListPlayer extends EventEmitter { // eslint-disable-line
     return !this.el.paused
   }
 
+  seek (time) {
+    if (!time) return this.el.currentTime
+    this.el.currentTime = time
+  }
+
   /**
    * Injects an audio element to the body and hides it.
    * @private

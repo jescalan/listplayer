@@ -45,8 +45,8 @@ If you have `loopTracks` set to `false` and try to move to the previous track fr
 You can also control the playhead position as such:
 
 ```js
-player.seek() // returns the position of the playhead, from 0 to 100
-player.seek(50) // moves the playhead to 50% of the way through the track
+player.seek() // returns the position of the playhead in seconds (float)
+player.seek(10) // moves the playhead to 10 seconds into the track
 ```
 
 #### Metadata
