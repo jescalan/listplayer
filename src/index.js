@@ -59,6 +59,7 @@ class ListPlayer extends EventEmitter { // eslint-disable-line
 
   seek (time) {
     if (!time) return this.el.currentTime
+    this.emit('seek', time)
     this.el.currentTime = time
   }
 
