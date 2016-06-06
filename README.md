@@ -51,20 +51,7 @@ player.seek(50) // moves the playhead to 50% of the way through the track
 
 #### Metadata
 
-You can get information about the currently playing track easily through `player.currentTrack`. This information is read from [ID3 tags](https://www.wikiwand.com/en/ID3) on your audio files. It returns an object containing the following metadata:
-
-```js
-// returned from player.currentTrack
-{
-  title: 'xxx',
-  album: 'xxx',
-  artist: 'xxx',
-  year: 'xxx',
-  duration: 'xxx'
-}
-```
-
-If you don't want to deal with ID3 tags, you can also set the metadata on a track manually by passing it in with this alternate syntax:
+You can get information about the currently playing track easily through `player.currentTrack`. You must pass in metadata with the constructor in order to access it for any given track, as such:
 
 ```js
 const player = new ListPlayer({
@@ -84,6 +71,19 @@ const player = new ListPlayer({
     }
   ]
 })
+```
+
+You can access the metadata any time through `player.currentTrack`, which returns an object like this:
+
+```js
+// returned from player.currentTrack
+{
+  title: 'xxx',
+  album: 'xxx',
+  artist: 'xxx',
+  year: 'xxx',
+  src: 'xxx'
+}
 ```
 
 #### Events

@@ -1,10 +1,14 @@
 class ListPlayer extends EventEmitter { // eslint-disable-line
   constructor (options = {}) {
     super()
-    this.tracks = options.tracks || []
+    this.tracks = (options.tracks || []).map((t) => {
+      if (typeof t === 'string') return { src: t }
+      return t
+    })
     this.loopTracks = options.loopTracks || true
     this.el = this._injectAudioElement()
     this.index = 0
+    this._loadTrack()
   }
 
   play () {
@@ -21,12 +25,14 @@ class ListPlayer extends EventEmitter { // eslint-disable-line
   next () {
     this.index++
     this.emit('next')
+    this._loadTrack()
     if (this.playing()) this.play()
   }
 
   prev () {
     this.index--
     this.emit('prev')
+    this._loadTrack()
     if (this.playing()) this.play()
   }
 
@@ -56,8 +62,9 @@ class ListPlayer extends EventEmitter { // eslint-disable-line
     }
     this.el.innerHTML = ''
 
+    this.currentTrack = this.tracks[this.index]
     const source = document.createElement('source')
-    source.src = this.tracks[this.index]
+    source.src = this.currentTrack.src
     source.type = 'audio/mp3'
 
     this.el.appendChild(source)
