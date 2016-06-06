@@ -9,6 +9,7 @@ class ListPlayer extends EventEmitter { // eslint-disable-line
     this.el = this._injectAudioElement()
     this.index = 0
     this._loadTrack()
+    if (this.advanced) this._loadAudioContext()
   }
 
   play () {
@@ -91,5 +92,12 @@ class ListPlayer extends EventEmitter { // eslint-disable-line
     this.el.appendChild(source)
     this.el.load()
     this._loadedTrack = this.index
+  }
+
+  _loadAudioContext () {
+    const AudioContext = window.AudioContext || window.webkitAudioContext
+    if (!AudioContext) return this.emit('error', 'web audio api unsupported')
+    this.ctx = new AudioContext()
+    this.src = this.ctx.createMediaElementSource(this.el)
   }
 }

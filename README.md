@@ -106,14 +106,24 @@ Each event will provide a response object as the first parameter with additional
 
 #### Advanced
 
-ListPlayer also provides a web audio context linked to the player, so you can access the raw web audio nodes if you need to do more advanced things:
+If you would like to use the [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API) in order to get some more advanced functionality, we do have an integration with ListPlayer set up. Just pass in `advanced: true` as a parameter to the constructor and it will switch into "advanced mode". In this mode, the audio node will be connected directly to a web audio API node, and you will see these two additional properties on your instance:
 
 ```js
 player.ctx // raw web audio context
-player.analyzer // raw analyzer for getting frequency, visualizations, etc
+player.src // a MediaElementAudioSourceNode
 ```
 
-Note that the Web Audio API is not supported in any version of Internet Explorer, so these properties will not be present in IE. The UI is up to you entirely. You can build any UI you want and control it through ListPlayer. If anyone has built a nice UI that you'd like to share, please submit a pull request and we'll add it to the readme!
+We do not connect the source node to an output to give advanced users the opportunity to route it through any number of custom nodes (for example, a gain node or analyser). If you do want to get some sound out of it, you must connect the source and destination yourself, and can do so like this:
+
+```js
+player.src.connect(player.ctx.destination)
+```
+
+This means that by default in advanced mode, no sound will come out unless you do this. Also note that the Web Audio API is not supported in any version of Internet Explorer, so these properties will not be present in IE, and it will emit an error and continue operating in "normal" mode. This allows for progressive enhancement if that's what you're after.
+
+### UI
+
+The UI is up to you entirely. You can build any UI you want and control it through ListPlayer. This project is purposefully headless to give developers the opportunity to build custom UIs around it. If anyone has built a nice UI that you'd like to share, please submit a pull request and we'll add it to the readme!
 
 ### Browser Compatibility
 
