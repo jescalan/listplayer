@@ -15,6 +15,7 @@
     "coveralls": "2.x",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
+    "gulp-concat": "^2.6.0",
     "gulp-uglify": "^1.5.3",
     "gulp-wrap-umd": "^0.2.1",
     "jsdom": "^9.2.1",
@@ -40,8 +41,5 @@
     "test": "gulp && ava",
     "prepublish": "gulp",
     "build": "gulp"
-  },
-  "dependencies": {
-    "gulp-concat": "^2.6.0"
   }
 }
