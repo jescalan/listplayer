@@ -1,7 +1,7 @@
 {
   "name": "player",
   "description": "js api for controlling audio playlists",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "Jeff Escalante",
   "ava": {
     "verbose": "true"
