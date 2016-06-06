@@ -6,15 +6,17 @@
 
 ### Why should you care?
 
-While managing a single track is straightforward enough using the web audio API directly, managing a playlist can get a little messy. This library wraps the complexity and exposes a simple and straightforward interface for playlists.
+While managing a single track is straightforward enough using a normal html5 audio node, managing a playlist can get a little messy. This library wraps the complexity and exposes a simple and straightforward interface for playlists.
 
 ### Installation
 
-`npm install listplayer -S`
+You can grab the source (or minified) directly from the `dist` folder and inlude it in your page if you want. You can also install it through npm with `npm install listplayer -S`.
 
 ### Usage
 
-First, create an instance of ListPlayer for your playlist by feeding it a list of tracks, and any options you want to pass. Example below shows the default options.
+ListPlayer is a [UMD](https://github.com/umdjs/umd) module, so it can be used attached directly to window, through a commonjs-based system like browserify or webpack, or through requirejs with no modification necessary. Just load it up, and it will work. If you are using it as an attach-to-window class, it exports under the name `ListPlayer`.
+
+To use it, first create an instance of ListPlayer for your playlist by feeding it a list of tracks, and any options you want to pass. For example:
 
 ```js
 const player = new ListPlayer({
@@ -40,11 +42,9 @@ player.prev() // moves to the previous song in the playlist
 
 If you have `loopTracks` set to `false` and try to move to the previous track from the first track in the list or the next track from the last, you will get an error. Otherwise it will loop back through the other side. When one track is finished playing, it will move to the next track in the list.
 
-You can also control the volume and seeking position:
+You can also control the playhead position as such:
 
 ```js
-player.volume() // returns the volume, from 0 to 100
-player.volume(50) // sets the volume to 50%
 player.seek() // returns the position of the playhead, from 0 to 100
 player.seek(50) // moves the playhead to 50% of the way through the track
 ```
@@ -60,20 +60,18 @@ const player = new ListPlayer({
       title: 'xxx',
       album: 'xxx',
       artist: 'xxx',
-      year: 'xxx',
       src: '/audio/song.mp3'
     }, {
       title: 'xxx',
       album: 'xxx',
       artist: 'xxx',
-      year: 'xxx',
       src: '/audio/othersong.mp3'
     }
   ]
 })
 ```
 
-You can access the metadata any time through `player.currentTrack`, which returns an object like this:
+You can access the metadata any time through `player.currentTrack`, which returns an object like this, exactly as you passed it in:
 
 ```js
 // returned from player.currentTrack
@@ -81,10 +79,11 @@ You can access the metadata any time through `player.currentTrack`, which return
   title: 'xxx',
   album: 'xxx',
   artist: 'xxx',
-  year: 'xxx',
   src: 'xxx'
 }
 ```
+
+You can use this metadata to customize the interface of your player.
 
 #### Events
 
@@ -101,21 +100,24 @@ Here's a listing of all the events:
 - `next` - player is moving to the next track
 - `prev` - player is moving to the previous track
 - `seek` - player is seeking to a different location within a track
-- `volumeChange` - player's volume has been changed
 - `error` - there was some type of error
 
 Each event will provide a response object as the first parameter with additional information, if necessary.
 
 #### Advanced
 
-Finally, you can access the raw web audio nodes if you need to do more advanced things:
+ListPlayer also provides a web audio context linked to the player, so you can access the raw web audio nodes if you need to do more advanced things:
 
 ```js
 player.ctx // raw web audio context
 player.analyzer // raw analyzer for getting frequency, visualizations, etc
 ```
 
-The UI is up to you entirely. You can build any UI you want and control it through ListPlayer. If anyone has built a nice UI that you'd like to share, please submit a pull request and we'll add it to the readme!
+Note that the Web Audio API is not supported in any version of Internet Explorer, so these properties will not be present in IE. The UI is up to you entirely. You can build any UI you want and control it through ListPlayer. If anyone has built a nice UI that you'd like to share, please submit a pull request and we'll add it to the readme!
+
+### Browser Compatibility
+
+Since this project primarily uses the [`<audio> element`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio), it can be used in [IE9+](http://caniuse.com/#feat=audio) safely. If you are using the web audio API features described in the section above, they are only supported in [IE 10+](http://caniuse.com/#feat=audio-api), and unfortunately completely unsupported in Safari due to its lack of support for `createMediaElementSource` up to the latest version, which is `9` at the time of writing.
 
 ### License & Contributing
 
