@@ -79,10 +79,7 @@ class ListPlayer extends EventEmitter { // eslint-disable-line
    * @private
    */
   _loadTrack () {
-    if (this._loadedTrack === this.index) {
-      this.el.currentTime = 0
-      return
-    }
+    if (this._loadedTrack === this.index) return
     this.el.innerHTML = ''
 
     this.currentTrack = this.tracks[this.index]
