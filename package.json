@@ -39,7 +39,7 @@
     "coveralls": "nyc --reporter=lcov ava && cat ./coverage/lcov.info | coveralls",
     "lint": "standard",
     "test": "gulp && ava",
-    "prepublish": "gulp",
+    "postinstall": "gulp",
     "build": "gulp"
   }
 }
