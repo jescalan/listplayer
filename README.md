@@ -1,6 +1,6 @@
 # ListPlayer
 
-[![npm](http://img.shields.io/npm/v/listplayer.svg?style=flat)](https://badge.fury.io/js/listplayer) [![tests](http://img.shields.io/travis/jescalan/listplayer/master.svg?style=flat)](https://travis-ci.org/jescalan/listplayer) [![dependencies](http://img.shields.io/david/jescalan/listplayer.svg?style=flat)](https://david-dm.org/jescalan/listplayer) [![coverage](http://img.shields.io/coveralls/jescalan/listplayer.svg?style=flat)](https://coveralls.io/github/jescalan/listplayer)
+[![npm](http://img.shields.io/npm/v/listplayer.svg?style=flat)](https://badge.fury.io/js/listplayer)  [![dependencies](http://img.shields.io/david/jescalan/listplayer.svg?style=flat)](https://david-dm.org/jescalan/listplayer)
 
 💃 A simple headless API for managing audio playlists in the browser
 
