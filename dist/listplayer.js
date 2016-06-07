@@ -132,7 +132,7 @@ var ListPlayer = function (_EventEmitter) {
     value: function next() {
       this.emit('next');
       this.index++;
-      if (this.index > this.tracks.length) {
+      if (this.index >= this.tracks.length) {
         if (this.loopTracks) {
           this.index = 0;
         } else {
@@ -140,15 +140,16 @@ var ListPlayer = function (_EventEmitter) {
           this.emit('error', 'you are on the last track');
         }
       }
+      var _wasPlaying = this.playing();
       this._loadTrack();
-      if (this.playing()) this.play();
+      if (_wasPlaying) this.play();
     }
   }, {
     key: 'prev',
     value: function prev() {
       this.emit('prev');
       this.index--;
-      if (this.index < 0) {
+      if (this.index <= 0) {
         if (this.loopTracks) {
           this.index = this.tracks.length;
         } else {
@@ -156,8 +157,9 @@ var ListPlayer = function (_EventEmitter) {
           this.emit('error', 'you are on the first track');
         }
       }
+      var _wasPlaying = this.playing();
       this._loadTrack();
-      if (this.playing()) this.play();
+      if (_wasPlaying) this.play();
     }
   }, {
     key: 'playing',
@@ -194,10 +196,7 @@ var ListPlayer = function (_EventEmitter) {
   }, {
     key: '_loadTrack',
     value: function _loadTrack() {
-      if (this._loadedTrack === this.index) {
-        this.el.currentTime = 0;
-        return;
-      }
+      if (this._loadedTrack === this.index) return;
       this.el.innerHTML = '';
 
       this.currentTrack = this.tracks[this.index];
