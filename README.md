@@ -6,7 +6,7 @@
 
 ### Why should you care?
 
-While managing a single track is straightforward enough using a normal html5 audio node, managing a playlist can get a little messy. This library wraps the complexity and exposes a simple and straightforward interface for playlists.
+While managing a single track is straightforward enough using a normal html5 audio node, managing a playlist can get a little messy. This library wraps the complexity and exposes a simple and straightforward interface for playlists. It's also extremely light (~1.4kb gzipped) and dependency-free.
 
 ### Installation
 
