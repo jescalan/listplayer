@@ -10,7 +10,7 @@ While managing a single track is straightforward enough using a normal html5 aud
 
 ### Installation
 
-You can grab the source (or minified) directly from the `dist` folder and inlude it in your page if you want. You can also install it through npm with `npm install listplayer -S`.
+You can grab the source (or minified) directly from [the latest release](https://github.com/jescalan/listplayer/releases) and inlude it in your page if you want. You can also install it through npm with `npm install listplayer -S`.
 
 ### Usage
 
