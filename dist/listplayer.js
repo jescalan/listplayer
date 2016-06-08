@@ -107,12 +107,15 @@ var ListPlayer = function (_EventEmitter) {
       return t;
     });
     _this.loopTracks = options.loopTracks || true;
+    _this.progressThroughTracks = options.progressThroughTracks || true;
     _this.el = _this._injectAudioElement();
     _this.index = 0;
     _this._loadTrack();
-    _this.el.addEventListener('ended', function () {
-      _this.next();_this.play();
-    });
+    if (_this.progressThroughTracks) {
+      _this.el.addEventListener('ended', function () {
+        _this.next();_this.play();
+      });
+    }
     if (_this.advanced) _this._loadAudioContext();
     return _this;
   }
