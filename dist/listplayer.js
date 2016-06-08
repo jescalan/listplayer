@@ -157,7 +157,7 @@ var ListPlayer = function (_EventEmitter) {
       this.index--;
       if (this.index <= 0) {
         if (this.loopTracks) {
-          this.index = this.tracks.length;
+          this.index = this.tracks.length - 1;
         } else {
           this.index++;
           this.emit('error', 'you are on the first track');
