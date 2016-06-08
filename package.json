@@ -15,6 +15,7 @@
     "coveralls": "2.x",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
+    "gulp-change": "^1.0.0",
     "gulp-concat": "^2.6.0",
     "gulp-uglify": "^1.5.3",
     "gulp-wrap-umd": "^0.2.1",
@@ -29,7 +30,7 @@
     "webaudio"
   ],
   "license": "MIT",
-  "main": "dist/listplayer.js",
+  "main": "dist/listplayer.cjs.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jescalan/listplayer.git"
