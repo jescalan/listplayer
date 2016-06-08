@@ -21,7 +21,8 @@ To use it, first create an instance of ListPlayer for your playlist by feeding i
 ```js
 const player = new ListPlayer({
   tracks: ['/audio/song.mp3', '/audio/othersong.mp3'],
-  loopTracks: true
+  loopTracks: true,
+  progressThroughTracks: true
 })
 ```
 
@@ -40,7 +41,7 @@ player.next() // moves to the next song in the playlist
 player.prev() // moves to the previous song in the playlist
 ```
 
-If you have `loopTracks` set to `false` and try to move to the previous track from the first track in the list or the next track from the last, you will get an error. Otherwise it will loop back through the other side. When one track is finished playing, it will move to the next track in the list.
+If you have `loopTracks` set to `false` and try to move to the previous track from the first track in the list or the next track from the last, you will get an error. Otherwise it will loop back through the other side. When one track is finished playing, it will move to the next track in the list, unless you have `progressThroughTracks` set to false, in which case when a track is finished playing, it will stop.
 
 You can also control the playhead position as such:
 

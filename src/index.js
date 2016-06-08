@@ -6,9 +6,13 @@ class ListPlayer extends EventEmitter { // eslint-disable-line
       return t
     })
     this.loopTracks = options.loopTracks || true
+    this.progressThroughTracks = options.progressThroughTracks || true
     this.el = this._injectAudioElement()
     this.index = 0
     this._loadTrack()
+    if (this.progressThroughTracks) {
+      this.el.addEventListener('ended', () => { this.next(); this.play() })
+    }
     if (this.advanced) this._loadAudioContext()
   }
 

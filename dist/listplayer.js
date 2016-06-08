@@ -110,6 +110,9 @@ var ListPlayer = function (_EventEmitter) {
     _this.el = _this._injectAudioElement();
     _this.index = 0;
     _this._loadTrack();
+    _this.el.addEventListener('ended', function () {
+      _this.next();_this.play();
+    });
     if (_this.advanced) _this._loadAudioContext();
     return _this;
   }
