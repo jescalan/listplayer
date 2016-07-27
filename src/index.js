@@ -45,7 +45,6 @@ class ListPlayer extends EventEmitter { // eslint-disable-line
 
   prev () {
     this.emit('prev')
-    this.index--
     if (this.index <= 0) {
       if (this.loopTracks) {
         this.index = this.tracks.length - 1
@@ -54,6 +53,7 @@ class ListPlayer extends EventEmitter { // eslint-disable-line
         this.emit('error', 'you are on the first track')
       }
     }
+    this.index--
     const _wasPlaying = this.playing()
     this._loadTrack()
     if (_wasPlaying) this.play()
