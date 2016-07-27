@@ -127,7 +127,7 @@ var ListPlayer = function (_EventEmitter) {
     value: function next() {
       this.emit('next');
       this.index++;
-      if (this.index >= this.tracks.length) {
+      if (this.index > this.tracks.length - 1) {
         if (this.loopTracks) {
           this.index = 0;
         } else {
@@ -143,7 +143,8 @@ var ListPlayer = function (_EventEmitter) {
     key: 'prev',
     value: function prev() {
       this.emit('prev');
-      if (this.index <= 0) {
+      this.index--;
+      if (this.index < 0) {
         if (this.loopTracks) {
           this.index = this.tracks.length - 1;
         } else {
@@ -151,7 +152,6 @@ var ListPlayer = function (_EventEmitter) {
           this.emit('error', 'you are on the first track');
         }
       }
-      this.index--;
       var _wasPlaying = this.playing();
       this._loadTrack();
       if (_wasPlaying) this.play();
