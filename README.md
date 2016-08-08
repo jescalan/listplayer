@@ -130,6 +130,11 @@ The UI is up to you entirely. You can build any UI you want and control it throu
 
 Since this project primarily uses the [`<audio> element`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio), it can be used in [IE9+](http://caniuse.com/#feat=audio) safely. If you are using the web audio API features described in the section above, they are only supported in [IE 10+](http://caniuse.com/#feat=audio-api), and unfortunately completely unsupported in Safari due to its lack of support for `createMediaElementSource` up to the latest version, which is `9` at the time of writing.
 
+### In The Wild
+
+- http://partythroughthedecades.cuervo.com
+- Open a PR to submit your integration!
+
 ### License & Contributing
 
 - [MIT Licensed](LICENSE.md)
