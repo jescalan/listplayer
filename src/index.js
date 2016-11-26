@@ -95,7 +95,7 @@ class ListPlayer extends EventEmitter { // eslint-disable-line
     this.currentTrack = this.tracks[this.index]
     const source = document.createElement('source')
     source.src = this.currentTrack.src
-    source.type = 'audio/mp3'
+    source.type = this.currentTrack.type || 'audio/mp3'
 
     this.el.appendChild(source)
     this.el.load()
