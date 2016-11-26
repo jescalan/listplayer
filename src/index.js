@@ -10,9 +10,12 @@ class ListPlayer extends EventEmitter { // eslint-disable-line
     this.el = this._injectAudioElement()
     this.index = 0
     this._loadTrack()
-    if (this.progressThroughTracks) {
-      this.el.addEventListener('ended', () => { this.next(); this.play() })
-    }
+    this.el.addEventListener('ended', () => {
+      if (this.progressThroughTracks) {
+        this.next()
+        this.play()
+      }
+    })
     if (this.advanced) this._loadAudioContext()
   }
 
