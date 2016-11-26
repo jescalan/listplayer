@@ -5,14 +5,17 @@ class ListPlayer extends EventEmitter { // eslint-disable-line
       if (typeof t === 'string') return { src: t }
       return t
     })
-    this.loopTracks = options.loopTracks || true
-    this.progressThroughTracks = options.progressThroughTracks || true
+    this.loopTracks = options.loopTracks !== undefined ? options.loopTracks : true
+    this.progressThroughTracks = options.progressThroughTracks !== undefined ? options.progressThroughTracks : true
     this.el = this._injectAudioElement()
     this.index = 0
     this._loadTrack()
-    if (this.progressThroughTracks) {
-      this.el.addEventListener('ended', () => { this.next(); this.play() })
-    }
+    this.el.addEventListener('ended', () => {
+      if (this.progressThroughTracks) {
+        this.next()
+        this.play()
+      }
+    })
     if (this.advanced) this._loadAudioContext()
   }
 
